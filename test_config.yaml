@@ -1,0 +1,26 @@
+accounts:
+-   name: ENC[AES256_GCM,data:1V4cSY4=,iv:CZT9qwYVIeLIx9roek4LBcWm1Zo/0rqdL2CaPiawQAE=,tag:Lo+G10fFZkorui8w6acLXw==,type:str]
+    totpsecret: ENC[AES256_GCM,data:QCMY8SvMZyxTfpjyJ/jOiqlesVHR/Tchy6v26hlWOQ2OvwiyFCl+Haeo84DmUQfsxKPDPImQs16Bsy2AuGqaYQ==,iv:UIjc1OirNV0MpWQhf+2BLXOwgMqsINljhc2U5OxeNIQ=,tag:ALR9gQWMC262rwbgrq+2Tg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    naclbox: []
+    lastmodified: '2020-03-27T18:47:33Z'
+    mac: ENC[AES256_GCM,data:Kd5F3BTfZNJssPPycrgUGE7wd23k+4n1KckxJqp4ETyUIF4iBqhpOhJ137yZg8SEqJsxUmsNnsCUg2TEowtknJTsIxgZ3SsszdJqtIU/gLvFiea2t/i1dgDWYG2u23rdam1fFWSbpzb8RmTLRff0VvdbNYWZSbYjW7dPZ87FjX0=,iv:tffzkUXA1ogPYTRk6mtkwH6pIQ6UovEEPoWEXOBLZHI=,tag:BcfFtrN67S/fTh2pIYPuLg==,type:str]
+    pgp:
+    -   created_at: '2020-03-27T18:47:16Z'
+        enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            wYwDEEVDpnzXnMABBAAQ5KiVSO8GQ0tM7Zt3qVFiLfaGuuZzK98AGGjdbDYjtQMy
+            50OvfdoiZFPbEJQ+8HgQiql756CaWZ9ErCezQE2eQDABM/5I+NzVIvhDbf0hdgh4
+            scIqVSiwo44rYL7l0PL+4r0XU3iuVGfhS3QJNFiixyAxOAcxnPTbqXpKH6CWe9Lg
+            AeRWApgNWzY39U96ZgUgreQd4c3U4IfgE+Gy6eBB4sKzs4LgOeWDw83nqiPqkYoB
+            emH8XPlHxC8MjmdooSJ6mrtH4ZH2ceCq5Mdq/poSpXiuS+nuFPzMzhPizxRfrOE0
+            SQA=
+            =y/mi
+            -----END PGP MESSAGE-----
+        fp: 1022470DE3F0BC54BC6AB62DE05550BC07FB1A0A
+    unencrypted_suffix: _unencrypted
+    version: 3.4.0
