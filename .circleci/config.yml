@@ -5,8 +5,10 @@ jobs:
       - image: circleci/golang:1.14
     steps:
       - checkout
-      - gpg --import sops_functional_tests_key.asc
-      - go run main.go test1
+      - run:
+          command: |
+            gpg --import sops_functional_tests_key.asc
+            go run main.go test1
 workflows:
   version: 2
   test:
