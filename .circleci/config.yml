@@ -6,9 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
-          command: |
-            gpg --import sops_functional_tests_key.asc
-            go run main.go test1
+          command: gpg --import sops_functional_tests_key.asc
+      - run:
+          command: go run main.go test1
 workflows:
   version: 2
   test:
