@@ -6,8 +6,7 @@ import (
 	"os"
 
 	"github.com/xlzd/gotp"
-	"go.mozilla.org/sops/decrypt"
-	"gopkg.in/yaml.v2"
+	"go.mozilla.org/sops/v3/decrypt"
 )
 
 type Config struct {
@@ -23,12 +22,8 @@ func main() {
 		fmt.Println("usage: sotp <account_name>")
 		os.Exit(1)
 	}
-	config, err := decrypt.File("test_config.yaml", "yaml")
-	if err != nil {
-		log.Fatal(err)
-	}
 	var cfg Config
-	err = yaml.Unmarshal(config, &cfg)
+	err := decrypt.YamlFile("config.yaml", &cfg)
 	if err != nil {
 		log.Fatal(err)
 	}
