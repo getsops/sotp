@@ -31,19 +31,17 @@ func main() {
 	}
 	cfg, err := decryptConfig("config.yaml")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("failed to access configuration at 'config.yaml'", err)
 	}
 	var totpSecret string
 	for _, account := range cfg.Accounts {
 		if account.Name == os.Args[1] {
 			totpSecret = account.TOTPSecret
-		}
-		if totpSecret != "" {
 			break
 		}
 	}
 	if totpSecret == "" {
-		fmt.Println("no totp information found for account", os.Args[1])
+		log.Fatal("no totp information found for account", os.Args[1])
 	}
 	otp := gotp.NewDefaultTOTP(totpSecret)
 
