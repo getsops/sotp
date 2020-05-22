@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"regexp"
 	"time"
 
 	"github.com/xlzd/gotp"
@@ -16,32 +17,42 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// Config is the structure of the yaml configuration file
 type Config struct {
 	Accounts []Account
 }
+
+// Account is an item in the yaml configuration file
 type Account struct {
 	Name       string
 	TOTPSecret string
 }
+
+var accountNameRe = `^[a-zA-Z0-9-_\.]{5,64}`
 
 func main() {
 	if len(os.Args) != 2 {
 		fmt.Println("usage: sotp <account_name>")
 		os.Exit(1)
 	}
+	accountName := os.Args[1]
+	if !regexp.MustCompile(accountNameRe).MatchString(accountName) {
+		log.Fatalf("account name %q does not comply to regular expression %q", accountName, accountNameRe)
+	}
+
 	cfg, err := decryptConfig("config.yaml")
 	if err != nil {
 		log.Fatal("failed to access configuration at 'config.yaml'", err)
 	}
 	var totpSecret string
 	for _, account := range cfg.Accounts {
-		if account.Name == os.Args[1] {
+		if account.Name == accountName {
 			totpSecret = account.TOTPSecret
 			break
 		}
 	}
 	if totpSecret == "" {
-		log.Fatal("no totp information found for account", os.Args[1])
+		log.Fatalf("no totp information found for account %q", accountName)
 	}
 	otp := gotp.NewDefaultTOTP(totpSecret)
 

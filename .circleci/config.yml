@@ -5,10 +5,27 @@ jobs:
       - image: circleci/golang:1.14
     steps:
       - checkout
-      - run: gpg --import sops_functional_tests_key.asc
+      - run: gpg --allow-secret-key-import sops_functional_tests_key.asc
+      - run: go test
       - run: go run main.go test1
+  lint:
+    docker:
+      - image: circleci/golang:1.14
+    steps:
+      - checkout
+      - run: go get -u golang.org/x/lint/golint
+      - run: golint .
+  vet:
+    docker:
+      - image: circleci/golang:1.14
+    steps:
+      - checkout
+      - run: go vet .
+
 workflows:
   version: 2
-  test:
+  all:
     jobs:
       - test
+      - lint
+      - vet
