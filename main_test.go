@@ -46,7 +46,7 @@ func TestGetTOTP(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	otpValue := otp.At(int(ts.Unix()))
+	otpValue := otp.At(ts.Unix())
 	if otpValue != "352864" {
 		t.Fatalf("expected otp value 352864 but got %q", otpValue)
 	}
