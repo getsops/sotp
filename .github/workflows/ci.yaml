@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - README.md
+      - docs/**
+
+jobs:
+  test:
+    name: Go ${{ matrix.go-version }} (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: [1.19.x, 1.20.x]
+        platform: [ubuntu-latest]
+
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@fac708d6674e30b6ba41289acaab6d4b75aa0753 # v4.0.1
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Checkout code
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+      - name: Run mod tidy
+        run: go mod tidy
+
+      - name: Run vet
+        run: go vet ./...
+
+      - name: Run fmt
+        run: go fmt ./...
+
+      - name: Check if directory is clean
+        run: git diff --exit-code
+
+      - name: Import test key
+        run: gpg --import sops_functional_tests_key.asc
+
+      - name: Run tests
+        run: go test -v -race ./...
+
+      - name: Run main.go test1
+        run: go run main.go test1
