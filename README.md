@@ -2,9 +2,7 @@
 
 Small utility to store AWS TOTP secrets into Sops encrypted files and generate OTP on the command line.
 
-[![CircleCI](https://circleci.com/gh/mozilla/sotp.svg?style=svg)](https://circleci.com/gh/mozilla/sotp)
-
-usage:
+Usage:
 
 ```
 $ sotp test1

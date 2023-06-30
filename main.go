@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
@@ -14,6 +13,7 @@ import (
 	"go.mozilla.org/sops/v3/cmd/sops/formats"
 	"go.mozilla.org/sops/v3/keyservice"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"gopkg.in/yaml.v2"
 )
 
@@ -61,7 +61,7 @@ func main() {
 
 func decryptConfig(path string) (cfg Config, err error) {
 	// Read the file into an []byte
-	encryptedData, err := ioutil.ReadFile(path)
+	encryptedData, err := os.ReadFile(path)
 	if err != nil {
 		return cfg, fmt.Errorf("failed to read file %q: %w", path, err)
 	}
@@ -69,7 +69,7 @@ func decryptConfig(path string) (cfg Config, err error) {
 	var svcs []keyservice.KeyServiceClient
 	svcs = append(svcs, keyservice.NewLocalClient())
 	// try connecting to unix:///tmp/sops.sock
-	conn, err := grpc.Dial("unix:///tmp/sops.sock", []grpc.DialOption{grpc.WithInsecure()}...)
+	conn, err := grpc.Dial("unix:///tmp/sops.sock", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err == nil {
 		// ignore errors but only add the keyservice if the dial call succeded
 		svcs = append(svcs, keyservice.NewKeyServiceClient(conn))
