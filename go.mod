@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/xlzd/gotp v0.1.0
 	go.mozilla.org/sops/v3 v3.7.3
-	google.golang.org/grpc v1.58.0
+	google.golang.org/grpc v1.58.1
 	gopkg.in/yaml.v2 v2.4.0
 )
 
