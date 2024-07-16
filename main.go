@@ -7,11 +7,11 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/xlzd/gotp"
 	"github.com/getsops/sops/v3/aes"
 	"github.com/getsops/sops/v3/cmd/sops/common"
 	"github.com/getsops/sops/v3/cmd/sops/formats"
 	"github.com/getsops/sops/v3/keyservice"
+	"github.com/xlzd/gotp"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"gopkg.in/yaml.v2"
