@@ -2,8 +2,6 @@ module github.com/mozilla/sotp
 
 go 1.21
 
-toolchain go1.22.5
-
 require (
 	github.com/getsops/sops/v3 v3.9.0
 	github.com/xlzd/gotp v0.1.0
