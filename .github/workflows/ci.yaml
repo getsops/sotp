@@ -48,6 +48,9 @@ jobs:
       - name: Check if directory is clean
         run: git diff --exit-code
 
+      - name: Run mod tidy again
+        run: go mod tidy
+
       - name: Import test key
         run: gpg --import sops_functional_tests_key.asc
 
