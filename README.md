@@ -23,4 +23,8 @@ accounts:
 * `name` is just a reference name that you'll use when invoking Sotp
 * `totpsecret` is a the secret seed you get from the `Adding a virtual MFA` screen in the AWS IAM console of a given user
 
-![aws_mfa_screen](./docs/aws_vmfa.png)
+![aws_mfa_screen](./docs/aws_vmfa.png)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgetsops%2Fsotp.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fgetsops%2Fsotp?ref=badge_shield)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fgetsops%2Fsotp.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fgetsops%2Fsotp?ref=badge_large)
